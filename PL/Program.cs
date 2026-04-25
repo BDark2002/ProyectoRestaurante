@@ -3,6 +3,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true; // Crucial para que no la bloquee el navegador
+    options.Cookie.Name = ".MiApp.Session";
+});
+
+//Cadena de conexion aqui para no estar expuesta en mi DL
+//builder.Services.AddDbContext<DL.JplacidoProgramacionNcapasContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("JPlacidoProgramacionNCapas")));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
