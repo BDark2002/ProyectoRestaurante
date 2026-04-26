@@ -42,5 +42,26 @@ namespace PL.Controllers
                 return Json(new{error = result.ErrorMessage});
             }
         }
+
+         public JsonResult Update([FromBody] ML.Restaurante restaurante)
+        {
+            if (restaurante == null)
+            {
+                return Json(new { error = "Datos inválidos." });
+            }
+
+            ML.Result result = _restauranteBL.UpdateRestaurante(restaurante);
+
+            if (result.Correct)
+            {
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { error = result.ErrorMessage });
+            }
+        }
+
     }
+
 }
