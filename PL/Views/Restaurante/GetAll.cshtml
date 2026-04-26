@@ -30,8 +30,47 @@
     </tbody>
 
 </table>
+<!--  Modal para editar -->
+<div id="modalEditar" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);">
+    
+    <div style="background:white; padding:20px; width:400px; margin:100px auto; border-radius:10px;">
+        
+        <h3>Editar Restaurante</h3>
 
+        <input type="hidden" id="IdRestaurante">
 
+        <div>
+            <label>Nombre</label>
+            <input type="text" id="Nombre" class="form-control">
+        </div>
+
+        <div>
+            <label>Logo</label>
+            <input type="text" id="Logo" class="form-control">
+        </div>
+
+        <div>
+            <label>Fecha Apertura</label>
+            <input type="date" id="FechaApertura" class="form-control">
+        </div>
+
+        <div>
+            <label>Fecha Cierre</label>
+            <input type="date" id="FechaCierre" class="form-control">
+        </div>
+
+        <div>
+            <label>Id Dirección</label>
+            <input type="number" id="IdDireccion" class="form-control">
+        </div>
+
+        <br>
+
+        <button onclick="Update()">Guardar</button>
+        <button onclick="CerrarModal()">Cancelar</button>
+
+    </div>
+</div>
 
 
 

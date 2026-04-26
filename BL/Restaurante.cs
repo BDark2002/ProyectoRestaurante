@@ -93,5 +93,25 @@ namespace BL
      return result;
     }
 
-    
+ public ML.Result UpdateRestaurante(ML.Restaurante restaurante){
+    ML.Result result = new ML.Result();
+    try{
+        int rowsAffected =_context.Database.ExecuteSqlRaw(
+            "EXEC RestaurnateUpdate @IdRestaurante={0},@Nombre = {1},@Logo = {2},@FechaApertura={3},@FechaCierre={4},@IdDireccion={5}",
+            restaurante.IdRestaurante,
+            restaurante.Nombre,
+            restaurante.Logo ?? (object)DBNull.value,
+            restaurante.FechaApertura,
+            restaurante.FechaCierre ?? (object)DBNull.value,
+            restaurante.Direccion.IdDireccion
+        );
+        result.Correct= rowsAffected > 0;
+    }
+    catch (Exceotion ex){
+        result.Correct = false;
+        result.ErrorMessage = ex.Message;
+        result.Ex = ex;
+    }
+    return result;
+ }   
 }

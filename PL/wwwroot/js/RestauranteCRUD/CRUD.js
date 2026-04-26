@@ -23,9 +23,13 @@ function GetAll() {
                         <td>${item.direccion.colonia.municipio.nombre}</td>
                         <td>${item.direccion.colonia.municipio.estado.nombre}</td>
                         <td>
-                        <button class = "btn bton-danger" onclick "Delete(${item.idRestaurante})">
-                        Eliminar </button>
-                        </button>
+                        <button class="btn btn-warning" onclick="OpenModal(${item.idRestaurante})">
+                                Editar
+                            </button>
+                        <button class = "btn btn-danger" onclick ="Delete(${item.idRestaurante})">
+                        Eliminar
+                         </button>
+                        
                         </td>
                     </tr>
                 `;
@@ -62,3 +66,71 @@ function Delete(id){
         }
     });
 }
+
+
+function OpenModal(id) {
+
+    $.ajax({
+        url: '/Restaurante/GetById',
+        type: 'GET',
+        data: { id: id },
+        success: function (item) {
+
+            $('#IdRestaurante').val(item.idRestaurante);
+            $('#Nombre').val(item.nombre);
+            $('#Logo').val(item.logo);
+            $('#FechaApertura').val(FormatearFecha(item.fechaApertura));
+            $('#FechaCierre').val(item.fechaCierre ? FormatearFecha(item.fechaCierre) : '');
+            $('#IdDireccion').val(item.direccion.idDireccion);
+
+            $('#modalEditar').show(); 
+        },
+        error: function () {
+            alert('Error al obtener datos');
+        }
+    });
+}
+function CerrarModal() {
+    $('#modalEditar').hide();
+}
+
+function FormatearFecha(fecha) {
+    let d = new Date(fecha);
+    return d.toISOString().split('T')[0];
+}
+
+
+function Update(){
+    let restaurante = {
+        idRestaurante: $('#IdRestaurante').val(),
+        nombre: $('#Nombre').val(),
+        logo: $('#Logo').val(),
+        fechaApertura: $('#FechaApertura').val(),
+        fechaCierre: $('#FechaCierre').val(),
+        direccion: {
+            idDireccion: $('#IdDireccion').val()
+        }
+    };
+
+    $.ajax({
+        url: '/Restaurante/Update',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(restaurante),
+        success: function (result)
+        {
+            if ( result.success){
+                alert('Actualizado correctamente');
+                $('modalEditar').hide();
+                GetAll();
+
+                let modal = bootstrap.Modal.getInstance(document.getElementById('modalEditar'));
+                modal.hide();
+            }else{
+                alert(result.error || 'Error al actualizar');
+            }
+        }
+    });
+    
+}
+
