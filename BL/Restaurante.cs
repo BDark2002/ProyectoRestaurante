@@ -75,6 +75,23 @@ namespace BL
 
             return result;
         }
+     public ML.Result DeleteRestaurante (int idRestaurante){
+        Ml.Result result = new Ml.Result();
 
+        try{
+          int rowsAffected = _context.Database.Execute.Sql.Raw(
+            "EXEC RestauranteDelete @IdRestaurante = {0}",
+            idRestaurante);
+
+          result.Correct = rowsAffected > 0;
+        }
+     }catch(Exception ex){
+        result.Correct = false;
+        result.ErrorMessage= ex.Message;
+        result.Ex=ex;
+     }
+     return result;
     }
+
+    
 }

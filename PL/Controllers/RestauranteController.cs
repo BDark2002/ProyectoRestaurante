@@ -30,5 +30,17 @@ namespace PL.Controllers
                 return Json(new { error = "No se pudieron obtener los restaurantes." });
             }
         }
+
+        public JsonResult Delete (int id)
+        {
+            ML.Result result = _restauranteBL.DeleteRestaurante(id);
+            if(result.Correct){
+                return Json(new{succes = true});
+
+            }
+            else{
+                return Json(new{error = result.ErrorMessage});
+            }
+        }
     }
 }
