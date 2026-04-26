@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,8 +16,8 @@ builder.Services.AddSession(options =>
     options.Cookie.Name = ".MiApp.Session";
 });
 
-//Cadena de conexion aqui para no estar expuesta en mi DL
-//builder.Services.AddDbContext<DL.JplacidoProgramacionNcapasContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Restaurante")));
+
+builder.Services.AddDbContext<DL.Models.RestauranteContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Restaurante")));
 
 
 var app = builder.Build();
