@@ -12,7 +12,7 @@ namespace ML
 
         public string Nombre { get; set; }
 
-        public  string CodigoPostal { get; set; }
+        //public  string CodigoPostal { get; set; }
 
         public List<object> Colonias { get; set; }
 

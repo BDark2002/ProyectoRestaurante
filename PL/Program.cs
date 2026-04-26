@@ -19,6 +19,7 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddDbContext<DL.Models.RestauranteContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Restaurante")));
 
+builder.Services.AddScoped<BL.Restaurante>();
 
 var app = builder.Build();
 
@@ -31,12 +32,12 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
+app.UseStaticFiles();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 
 app.Run();

@@ -13,23 +13,25 @@ namespace DL.Models
         {
             public int IdRestaurante { get; set; }
             public string Nombre { get; set; }
-            public byte[] Logo { get; set; }
-            public DateTime FechaApertura { get; set; }
-            public DateTime FechaCierre { get; set; }
+            public byte[]? Logo { get; set; }
+            public DateTime? FechaApertura { get; set; }
+            public DateTime? FechaCierre { get; set; }
 
             //direccion
 
-            public string Calle { get; set; }
+            public int IdDireccion { get; set; }
 
-            public string NumeroInterior { get; set; }
+            //public string Calle { get; set; }
 
-            public string NumeroExterior { get; set; }
+            //public string NumeroInterior { get; set; }
+
+            //public string NumeroExterior { get; set; }
 
             //colonia
 
             public string NombreColonia { get; set; }
 
-            public string CodigoPostal { get; set; }
+            //public string CodigoPostal { get; set; }
 
             //municipio
 

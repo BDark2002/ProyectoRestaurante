@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Restaurante</h1>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Logo</th>
+            <th>Fecha Apertura</th>
+            <th>Fecha Cierre</th>
+            <th>Colonia</th>
+            <th>Municipio</th>
+            <th>Estado</th>
+
+        </tr>
+    </thead>
+    <tbody id="restauranteTabla">
+        
+    @* Esto se hace en el json *@
+
+
+    </tbody>
+
+</table>
+
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/js/RestauranteCRUD/CRUD.js"></script>
