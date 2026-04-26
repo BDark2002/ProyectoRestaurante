@@ -14,7 +14,7 @@ builder.Services.AddSession(options =>
 });
 
 //Cadena de conexion aqui para no estar expuesta en mi DL
-//builder.Services.AddDbContext<DL.JplacidoProgramacionNcapasContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("JPlacidoProgramacionNCapas")));
+//builder.Services.AddDbContext<DL.JplacidoProgramacionNcapasContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Restaurante")));
 
 
 var app = builder.Build();
